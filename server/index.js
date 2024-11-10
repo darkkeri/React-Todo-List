@@ -14,6 +14,6 @@ app.use("/user",userRouter)
 
 app.use((err,req,res,next) => {
     const statusCode = err.statusCode || 500
-    res.status(statusCode).jsonm({error: err.message})
+    res.status(statusCode).json({error: err.message})
 })
 app.listen(port)

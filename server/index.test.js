@@ -51,7 +51,22 @@ describe("POST task",() => {
             body: JSON.stringify({"description":null})
         })
         const data = await response.json()
-        expect(response.status).to.equal(500)
+        expect(response.status).to.equal(400,data.error)
+        expect(data).to.be.an("object")
+        expect(data).to.include.all.keys("error")
+    })
+
+    it ("should not post a task with zero length description",async () => {
+        const response = await fetch(base_url + "/create",{
+            method: "post",
+            headers: {
+                "Content-Type":"application/json",
+                Authorization: token
+            },
+            body: JSON.stringify({"description":""})
+        })
+        const data = await response.json()
+        expect(response.status).to.equal(400,data.error)
         expect(data).to.be.an("object")
         expect(data).to.include.all.keys("error")
     })
@@ -86,7 +101,7 @@ describe("DELETE task",() => {
             }
         })
         const data = await response.json()
-        expect(response.status).to.equal(500)
+        expect(response.status).to.equal(400,data.error)
         expect(data).to.be.an("object")
         expect(data).to.include.all.keys("error")
     })
@@ -107,6 +122,22 @@ describe("POST register",() => {
         expect(response.status).to.equal(201,data.error)
         expect(data).to.be.an("object")
         expect(data).to.include.all.keys("id")
+    })
+
+    it ("should not post a user with less than 8 character password",async () => {
+        const email = "register@foo.com"
+        const password = "short1"
+        const response = await fetch(base_url + "/user/register",{
+            method: "post",
+            headers: {
+                "Content-Type":"application/json"
+            },
+            body: JSON.stringify({"email":email,"password":password})
+        })
+        const data = await response.json()
+        expect(response.status).to.equal(400,data.error)
+        expect(data).to.be.an("object")
+        expect(data).to.include.all.keys("error")
     })
 })
 
