@@ -17,12 +17,13 @@ export default function Authentication({authenticationMode}) {
         try {
             if (authenticationMode === AuthenticationMode.Register) {
                 await signUp()
+                navigate("/signin")
             } else {
                 await signIn()
                 navigate("/")
             }
         } catch(error) {
-            const message = error.response && error.response.data ? error.response.data.erro : error
+            const message = error.response && error.response.data ? error.response.data.error : error
             alert(message)
         }
     }
@@ -34,7 +35,7 @@ export default function Authentication({authenticationMode}) {
             <form onSubmit={handleSubmit}>
                 <div>
                     <label>Email</label>
-                    <input type ="email" value={user.email} onChange={e => setUser({...user, email: e.target.value})}/>
+                    <input type="email" value={user.email} onChange={e => setUser({...user, email: e.target.value})}/>
                 </div>
                 <div>
                     <label>Password</label>

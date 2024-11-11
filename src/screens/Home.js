@@ -49,7 +49,7 @@ function Home() {
     <div id="container">
       <h3>Todos</h3>
       <form>
-        <input placeholder="Add new task" 
+        <input id="taskinput" placeholder="Add new task" 
         value={task}
         onChange={e => setTask(e.target.value)}
         onKeyDown={e => {

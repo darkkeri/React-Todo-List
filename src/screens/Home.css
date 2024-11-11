@@ -1,5 +1,11 @@
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Meiryo;
+}
+
 #container {
-  padding: 3em;
 }
 
 li {
@@ -8,4 +14,15 @@ li {
 
 .deletebutton {
   margin-left: 1em;
+}
+
+#taskinput{
+  border-radius: 5px;
+  border: #5c438e 4px;
+  background-color: #3d375c;
+  color: white;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  width: 20em;
 }
